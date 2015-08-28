@@ -1,8 +1,6 @@
 package epl.learning.seventhEPL;
 
 import com.espertech.esper.client.*;
-import com.espertech.esper.client.soda.EPStatementObjectModel;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.Iterator;
 
