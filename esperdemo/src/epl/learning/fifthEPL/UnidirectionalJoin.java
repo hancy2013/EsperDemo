@@ -19,6 +19,7 @@ class Orange {
     }
 
     public int getPrice() {
+
         return price;
     }
 
