@@ -1,4 +1,5 @@
 package epl.learning.sixthEPL;
+
 import com.espertech.esper.client.hook.SQLOutputRowConversion;
 import com.espertech.esper.client.hook.SQLOutputRowTypeContext;
 import com.espertech.esper.client.hook.SQLOutputRowValueContext;
@@ -13,11 +14,13 @@ import java.sql.SQLException;
 public class MySQLOutputRowConvertor implements SQLOutputRowConversion {
 
     // 每行查询结果转换后的类型
+    @Override
     public Class getOutputRowType(SQLOutputRowTypeContext context) {
         return String.class;
     }
 
     // 返回转换后的内容
+    @Override
     public Object getOutputRow(SQLOutputRowValueContext context) {
         ResultSet result = context.getResultSet();
         Object obj1 = null;
