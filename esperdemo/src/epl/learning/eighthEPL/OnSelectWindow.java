@@ -1,10 +1,11 @@
 package epl.learning.eighthEPL;
+
 import com.espertech.esper.client.*;
 
 /**
  * Created by wxmimperio on 2015/9/9.
- *  如果select子句里是*，则返回的不仅仅是window中的事件，还会返回触发查询的事件
- *  并且返回的多行结果中每行都会包含这个触发事件
+ * 如果select子句里是*，则返回的不仅仅是window中的事件，还会返回触发查询的事件
+ * 并且返回的多行结果中每行都会包含这个触发事件
  */
 
 //触发JavaBean
@@ -65,7 +66,7 @@ class OnSelectEvent {
 class OnSelectWindowListener implements UpdateListener {
     @Override
     public void update(EventBean[] newEvents, EventBean[] oldEvents) {
-        if(newEvents != null) {
+        if (newEvents != null) {
             System.out.println("Trigger on select");
             System.out.println("There is " + newEvents.length + " OnSelectEvent in OnSelectWindow");
             for (EventBean eb : newEvents) {
@@ -111,7 +112,7 @@ public class OnSelectWindow {
         //添加3个事件，但OnSelectWindow.win:length(2)，此时事件1已经出去了
         statement.addListener(new OnSelectWindowListener());
 
-        OnSelectEvent ose1 = new OnSelectEvent("ose1",1);
+        OnSelectEvent ose1 = new OnSelectEvent("ose1", 1);
         er.sendEvent(ose1);
         System.out.println("Send OnSelectEvent 1: " + ose1);
 
@@ -119,7 +120,7 @@ public class OnSelectWindow {
         er.sendEvent(ose2);
         System.out.println("Send OnSelectEvent 2: " + ose2);
 
-        OnSelectEvent ose3 = new OnSelectEvent("ose3",3);
+        OnSelectEvent ose3 = new OnSelectEvent("ose3", 3);
         er.sendEvent(ose3);
         System.out.println("Send OnSelectEvent 3: " + ose3);
 
@@ -146,7 +147,7 @@ public class OnSelectWindow {
         er.sendEvent(ose4);
 
         //事件5进入，事件3出去
-        OnSelectEvent ose5 = new OnSelectEvent("ose5",5);
+        OnSelectEvent ose5 = new OnSelectEvent("ose5", 5);
         System.out.println("Send OnSelectEvent 5(also a Trigger): " + ose5 + "\n");
         er.sendEvent(ose5);
     }
