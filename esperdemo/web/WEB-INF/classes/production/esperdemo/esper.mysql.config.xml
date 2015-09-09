@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Sample configuration file.
+
+    This is a sample configuration file. It presents most or all configuration options in XML.
+    
+    The configuration herein is not the default configuration. Please remove all elements for the default configuration, and add elements as needed for your required settings.
+
+    An empty XML configuration file (empty except for the esper-configuration root element) represents the default configuration and is equivalent to the API call of "new Configuration()".
+
+    We recommend starting with the default "esper.default.cfg" configuration file instead for new projects.
+-->
+<esper-configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xmlns="http://www.espertech.com/schema/esper"
+                     xsi:noNamespaceSchemaLocation="esper-configuration-5-0.xsd">
+
+    <!-- Sample configuration for database access using DriverManager; retains connections associated with a statement, closing the connection when a statement is stopped -->
+
+    <!--
+        database-reference：
+            name:数据库名称
+        drivermanager-connection：
+            class-name：驱动class
+            url:数据库连接地址
+            user:用户名
+            password:密码
+        注：
+        drivermanager-connection中的user和password属性必须填写，即使增加了connection-arg参数也不行
+    -->
+    <database-reference name="world">
+        <drivermanager-connection class-name="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/world" user="root" password="root">
+            <connection-arg name="user" value ="root"/>
+            <connection-arg name="password" value ="root"/>
+            <connection-arg name="somearg" value ="someargvalue"/>
+        </drivermanager-connection>
+        <connection-lifecycle value="retain"/>		<!-- Retains connection associated with a statement, closing a connection only when a statement is stopped -->
+        <expiry-time-cache max-age-seconds="60" purge-interval-seconds="120" ref-type="weak"/>	<!-- Configures an optional time-based cache with a maximum age in seconds and a purge interval, and an optional reference strategy  -->
+    </database-reference>
+
+</esper-configuration>
